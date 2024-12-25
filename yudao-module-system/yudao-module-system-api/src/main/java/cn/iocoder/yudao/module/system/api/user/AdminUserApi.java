@@ -87,6 +87,7 @@ public interface AdminUserApi extends AutoTransable<AdminUserRespDTO> {
         return getUserList(Convert.toList(Long.class, ids)).getCheckedData();
     }
 
+    @GetMapping(PREFIX + "/{id}")
     @Override
     @FeignIgnore
     default AdminUserRespDTO selectById(Object id) {
