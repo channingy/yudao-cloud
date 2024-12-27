@@ -81,6 +81,7 @@ public interface AdminUserApi extends AutoTransable<AdminUserRespDTO> {
     @Parameter(name = "ids", description = "用户编号数组", example = "3,5", required = true)
     CommonResult<Boolean> validateUserList(@RequestParam("ids") Collection<Long> ids);
 
+    @GetMapping(PREFIX + "/list-by-ids")
     @Override
     @FeignIgnore
     default List<AdminUserRespDTO> selectByIds(List<?> ids) {
