@@ -14,7 +14,7 @@ CREATE TABLE `hcm_employee` (
   `org_unit` bigint NOT NULL COMMENT '末级组织',
   `org_level` int NOT NULL COMMENT '组织层级',
   `job` bigint DEFAULT NULL COMMENT '职位',
-  `position` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '职务',
+  `position` bigint DEFAULT NULL COMMENT '职务',
   `rank` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '职级',
   `job_level` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '职等',
   `old_emp_no` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '原工号',
