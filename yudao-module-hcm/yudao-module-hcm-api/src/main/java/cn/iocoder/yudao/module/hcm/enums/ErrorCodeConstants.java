@@ -3,7 +3,7 @@ import cn.iocoder.yudao.framework.common.exception.ErrorCode;
 /**
  * HCM 错误码枚举类
  * <p>
- * HCM 系统，使用 1-100-000-000 段
+ * HCM 系统 1-100 号段，使用 1-100-000-000 段
  */
 public interface ErrorCodeConstants {
     // ========== 主数据 模块 1_100_000_000 ==========
@@ -16,4 +16,8 @@ public interface ErrorCodeConstants {
     ErrorCode ORGANIZATION_PARENT_ERROR = new ErrorCode(1_100_100_003, "不能设置自己为父组织");
     ErrorCode ORGANIZATION_SHORT_NAME_DUPLICATE = new ErrorCode(1_100_100_004, "已经存在该组织简称的组织");
     ErrorCode ORGANIZATION_PARENT_IS_CHILD = new ErrorCode(1_100_100_005, "不能设置自己的子Organization为父Organization");
+
+    // ========== 员工 1_100_200_000 ==========
+    ErrorCode EMPLOYEE_NOT_EXISTS = new ErrorCode(1_100_200_000, "员工不存在");
+
 }
