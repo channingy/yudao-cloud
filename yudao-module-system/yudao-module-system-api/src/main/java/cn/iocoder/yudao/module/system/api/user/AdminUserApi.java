@@ -7,7 +7,6 @@ import cn.iocoder.yudao.module.system.api.user.dto.AdminUserRespDTO;
 import cn.iocoder.yudao.module.system.enums.ApiConstants;
 import com.fhs.core.trans.anno.AutoTrans;
 import com.fhs.trans.service.AutoTransable;
-import feign.FeignIgnore;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -31,7 +30,7 @@ public interface AdminUserApi extends AutoTransable<AdminUserRespDTO> {
 
     @GetMapping(PREFIX + "/get")
     @Operation(summary = "通过用户 ID 查询用户")
-    @Parameter(name = "id", description = "用户编号", example = "1", required = true)
+    @Parameter(name = "id", description = "用户ID", required = true, example = "1024")
     CommonResult<AdminUserRespDTO> getUser(@RequestParam("id") Long id);
 
     @GetMapping(PREFIX + "/list-by-subordinate")
@@ -40,8 +39,8 @@ public interface AdminUserApi extends AutoTransable<AdminUserRespDTO> {
     CommonResult<List<AdminUserRespDTO>> getUserListBySubordinate(@RequestParam("id") Long id);
 
     @GetMapping(PREFIX + "/list")
-    @Operation(summary = "通过用户 ID 查询用户们")
-    @Parameter(name = "ids", description = "部门编号数组", example = "1,2", required = true)
+    @Operation(summary = "通过用户 ID 列表查询用户列表")
+    @Parameter(name = "ids", description = "用户ID列表", required = true, example = "1024,2048")
     CommonResult<List<AdminUserRespDTO>> getUserList(@RequestParam("ids") Collection<Long> ids);
 
     @GetMapping(PREFIX + "/list-by-dept-id")
@@ -83,14 +82,12 @@ public interface AdminUserApi extends AutoTransable<AdminUserRespDTO> {
 
     @GetMapping(PREFIX + "/list-by-ids")
     @Override
-    @FeignIgnore
     default List<AdminUserRespDTO> selectByIds(List<?> ids) {
         return getUserList(Convert.toList(Long.class, ids)).getCheckedData();
     }
 
     @GetMapping(PREFIX + "/{id}")
     @Override
-    @FeignIgnore
     default AdminUserRespDTO selectById(Object id) {
         return getUser(Convert.toLong(id)).getCheckedData();
     }
