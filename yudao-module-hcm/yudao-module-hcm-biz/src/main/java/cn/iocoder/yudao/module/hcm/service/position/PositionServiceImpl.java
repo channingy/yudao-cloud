@@ -1,21 +1,20 @@
 package cn.iocoder.yudao.module.hcm.service.position;
 
-import org.springframework.stereotype.Service;
-import jakarta.annotation.Resource;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.util.*;
-import cn.iocoder.yudao.module.hcm.controller.admin.position.vo.*;
-import cn.iocoder.yudao.module.hcm.dal.dataobject.position.PositionDO;
 import cn.iocoder.yudao.framework.common.pojo.PageResult;
-import cn.iocoder.yudao.framework.common.pojo.PageParam;
 import cn.iocoder.yudao.framework.common.util.object.BeanUtils;
-
+import cn.iocoder.yudao.framework.mybatis.core.query.LambdaQueryWrapperX;
+import cn.iocoder.yudao.module.hcm.controller.admin.position.vo.PositionPageReqVO;
+import cn.iocoder.yudao.module.hcm.controller.admin.position.vo.PositionSaveReqVO;
+import cn.iocoder.yudao.module.hcm.dal.dataobject.position.PositionDO;
 import cn.iocoder.yudao.module.hcm.dal.mysql.position.PositionMapper;
+import jakarta.annotation.Resource;
+import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
+
+import java.util.List;
 
 import static cn.iocoder.yudao.framework.common.exception.util.ServiceExceptionUtil.exception;
-import static cn.iocoder.yudao.module.hcm.enums.ErrorCodeConstants.*;
+import static cn.iocoder.yudao.module.hcm.enums.ErrorCodeConstants.POSITION_NOT_EXISTS;
 
 /**
  * 职务信息 Service 实现类
@@ -69,6 +68,13 @@ public class PositionServiceImpl implements PositionService {
     @Override
     public PageResult<PositionDO> getPositionPage(PositionPageReqVO pageReqVO) {
         return positionMapper.selectPage(pageReqVO);
+    }
+
+    @Override
+    public List<PositionDO> getPositionSimpleList() {
+        return positionMapper.selectList(new LambdaQueryWrapperX<PositionDO>()
+                .select(PositionDO::getId, PositionDO::getCode, PositionDO::getName)
+                .orderByAsc(PositionDO::getCode));
     }
 
 }

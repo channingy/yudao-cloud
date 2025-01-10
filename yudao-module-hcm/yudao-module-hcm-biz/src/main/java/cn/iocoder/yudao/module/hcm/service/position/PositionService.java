@@ -1,11 +1,12 @@
 package cn.iocoder.yudao.module.hcm.service.position;
 
-import java.util.*;
-import jakarta.validation.*;
-import cn.iocoder.yudao.module.hcm.controller.admin.position.vo.*;
-import cn.iocoder.yudao.module.hcm.dal.dataobject.position.PositionDO;
 import cn.iocoder.yudao.framework.common.pojo.PageResult;
-import cn.iocoder.yudao.framework.common.pojo.PageParam;
+import cn.iocoder.yudao.module.hcm.controller.admin.position.vo.PositionPageReqVO;
+import cn.iocoder.yudao.module.hcm.controller.admin.position.vo.PositionSaveReqVO;
+import cn.iocoder.yudao.module.hcm.dal.dataobject.position.PositionDO;
+import jakarta.validation.Valid;
+
+import java.util.List;
 
 /**
  * 职务信息 Service 接口
@@ -51,5 +52,12 @@ public interface PositionService {
      * @return 职务信息分页
      */
     PageResult<PositionDO> getPositionPage(PositionPageReqVO pageReqVO);
+
+    /**
+     * 获取职务精简信息列表
+     *
+     * @return 职务精简信息列表
+     */
+    List<PositionDO> getPositionSimpleList();
 
 }
