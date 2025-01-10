@@ -91,4 +91,12 @@ public class OrganizationController {
                         BeanUtils.toBean(list, OrganizationRespVO.class));
     }
 
+    @GetMapping("/company-list")
+    @Operation(summary = "获得公司列表")
+    @PreAuthorize("@ss.hasPermission('hcm:organization:query')")
+    public CommonResult<List<OrganizationRespVO>> getCompanyList() {
+        List<OrganizationDO> list = organizationService.getCompanyList();
+        return success(BeanUtils.toBean(list, OrganizationRespVO.class));
+    }
+
 }

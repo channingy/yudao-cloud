@@ -43,4 +43,12 @@ public interface OrganizationMapper extends BaseMapperX<OrganizationDO> {
         return selectCount(OrganizationDO::getParentId, parentId);
     }
 
+    default List<OrganizationDO> selectCompanyList() {
+        return selectList(new LambdaQueryWrapperX<OrganizationDO>()
+                .select(OrganizationDO::getId, OrganizationDO::getCode, OrganizationDO::getShortName)
+                .eq(OrganizationDO::getCategory, "10")
+                .eq(OrganizationDO::getStatus, 0)
+                .orderByAsc(OrganizationDO::getCode));
+    }
+
 }

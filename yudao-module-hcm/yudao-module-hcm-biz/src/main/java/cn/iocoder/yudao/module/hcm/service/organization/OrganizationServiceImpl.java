@@ -133,4 +133,9 @@ public class OrganizationServiceImpl implements OrganizationService {
         return organizationMapper.selectList(listReqVO);
     }
 
+    @Override
+    public List<OrganizationDO> getCompanyList() {
+        return organizationMapper.selectCompanyList();
+    }
+
 }

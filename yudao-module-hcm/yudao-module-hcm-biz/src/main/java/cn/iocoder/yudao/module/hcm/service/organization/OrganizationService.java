@@ -52,4 +52,11 @@ public interface OrganizationService {
      */
     List<OrganizationDO> getOrganizationList(OrganizationListReqVO listReqVO);
 
+    /**
+     * 获得公司列表
+     *
+     * @return 公司列表
+     */
+    List<OrganizationDO> getCompanyList();
+
 }
